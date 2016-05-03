@@ -55,8 +55,10 @@ app.post('/', function (req, res) {
     date: t,
     text: req.body
   };
+  // change obj to string
+  var objAsString = JSON.stringify(obj);
   // append to paths.txt
-  writeToEndOfFile(dbFile,obj);
+  writeToEndOfFile(dbFile,objAsString);
   res.sendStatus(200); // equivalent to res.status(200).send('OK')
 });
 
