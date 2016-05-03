@@ -49,6 +49,7 @@ app.get('/', function (req, res) {
 
 // POST method route
 app.post('/', function (req, res) {
+  console.log('got post with req.body:\n',req.body);
   // get req body
   var t = ( new Date() ).getTime(); //epoch ms or whatever
   var obj = {
@@ -75,6 +76,7 @@ function readFile(filename, callback) {
 }
 
 function writeToEndOfFile(filename, data) {
+  data += '\n';
   /* TIL: fs.writeFile overwrites file */
   console.log('writing data:',data,'to file:',filename);
   fs.appendFile(filename, data, function (err) {
