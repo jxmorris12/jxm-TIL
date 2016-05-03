@@ -42,7 +42,6 @@ app.get('/', function (req, res) {
   var data = readFile(dbFile, function(data) {
     // return contents
     res.writeHead(200, {'Content-Type': '.txt'});
-    res.write(' '); // for some reason I need this
     res.write(data);
     res.end();
   });
