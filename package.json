@@ -4,6 +4,7 @@
   "description": "a small app to post short updates on my website",
   "main": "server.js",
   "dependencies": {
+    "body-parser": "^1.15.0",
     "express": "^4.13.4",
     "fs": "0.0.2"
   },

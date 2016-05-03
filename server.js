@@ -4,20 +4,18 @@
 // Small node.js app that takes POSTs and GETs to simulate
 // a very minimal blog
 
-var express = require('express'),
-    fs = require('fs'),
-    app = express();
+var express           = require('express'),
+    fs                = require('fs'),
+    bodyParser        = require('body-parser')
+    app               = express();
 
-/* 
-Irrelevant, me thinks
-app.use(bodyParser.json());
+app.use(bodyParser.json());   // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({
     extended: true
-}));
+}));                          // to support URL-encoded bodies
 
 // what does this do
-app.use(methodOverride());      // simulate DELETE and PUT
-*/
+// app.use(methodOverride());      // simulate DELETE and PUT
 
 // CORS (Cross-Origin Resource Sharing) headers to support Cross-site HTTP requests
 app.all('*', function(req, res, next) {
@@ -49,12 +47,13 @@ app.get('/', function (req, res) {
 
 // POST method route
 app.post('/', function (req, res) {
+  console.log('req:\n',req);
   console.log('got post with req.body:\n',req.body);
-  // get req body
+  // make obj
   var t = ( new Date() ).getTime(); //epoch ms or whatever
   var obj = {
     date: t,
-    text: req.body
+    text: req.body.text
   };
   // change obj to string
   var objAsString = JSON.stringify(obj);
@@ -76,7 +75,7 @@ function readFile(filename, callback) {
 }
 
 function writeToEndOfFile(filename, data) {
-  data += '\n';
+  data = data + '\n';
   /* TIL: fs.writeFile overwrites file */
   console.log('writing data:',data,'to file:',filename);
   fs.appendFile(filename, data, function (err) {
