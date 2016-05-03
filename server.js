@@ -47,8 +47,8 @@ app.get('/', function (req, res) {
 
 // POST method route
 app.post('/', function (req, res) {
-  console.log('req:\n',req);
-  console.log('got post with req.body:\n',req.body);
+  // console.log('req:\n',req);
+  // console.log('got post with req.body:\n',req.body);
   // make obj
   var t = ( new Date() ).getTime(); //epoch ms or whatever
   var obj = {
